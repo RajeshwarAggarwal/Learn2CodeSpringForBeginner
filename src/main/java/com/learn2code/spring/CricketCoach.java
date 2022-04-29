@@ -1,17 +1,30 @@
 package com.learn2code.spring;
 
 import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-public class CricketCoach implements Coach, DisposableBean {
+import javax.annotation.PreDestroy;
+
+@Component("myCricketCoach")
+public class CricketCoach implements Coach {
 
     private FortuneService fortuneService;
+
+    @Value("${foo.email}")
     private String email;
+
+    @Value("${foo.team}")
     private String team;
 
     public CricketCoach(){
         System.out.println("CricketCoach: Constructor called.");
     }
 
+    @Autowired
+    @Qualifier("randomFortuneService")
     public void setFortuneService(FortuneService fortuneService) {
         System.out.println("CricketCoach: SetFortuneService method called.");
         this.fortuneService = fortuneService;
@@ -40,13 +53,13 @@ public class CricketCoach implements Coach, DisposableBean {
         return "Fast bowling for 15 min";
     }
 
-    @Override
+   @Override
     public String getDailyFortune() {
         return fortuneService.getFortune();
     }
 
-    @Override
+    @PreDestroy
     public void destroy() throws Exception {
-
+        System.out.println("Inside CricketCoach : Cleaning up");
     }
 }

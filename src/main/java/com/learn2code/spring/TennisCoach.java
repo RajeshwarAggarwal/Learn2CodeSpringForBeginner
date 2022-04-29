@@ -3,29 +3,33 @@ package com.learn2code.spring;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
 @Component
-public class TrackCoach implements Coach{
-
-    @Autowired
-    @Qualifier("happyFortuneService")
+@Scope("prototype")
+public class TennisCoach implements Coach, DisposableBean {
     private FortuneService fortuneService;
 
-    public TrackCoach(){
+    public TennisCoach(){
+    }
+
+    @Autowired
+    @Qualifier("randomFortuneService")
+    public void doCrazyStuff(FortuneService fortuneService){
+        this.fortuneService=fortuneService;
     }
 
     @PostConstruct
     public void doMyStuffAtStartUp(){
-        System.out.println("Inside TrackCoach.doMyStuffAtStartUp method : Initilisation inside custom method.");
+        System.out.println("Inside TennisCoach.doMyStuffAtStartUp method : Initilisation inside custom method.");
     }
 
     @Override
     public String getDailyWorkOut(){
-        return "Run a hard 5k.";
+        return "Pratice hardly in Tennis Court.";
     }
 
     @Override
@@ -33,9 +37,9 @@ public class TrackCoach implements Coach{
         return fortuneService.getFortune();
     }
 
-    @PreDestroy
+    @Override
     public void destroy() throws Exception {
-        System.out.println("Inside TrackCoach.destroy Method : Cleaning up ..");
+        System.out.println("Inside TennisCoach.destroy Method : Cleaning up ..");
     }
 
 

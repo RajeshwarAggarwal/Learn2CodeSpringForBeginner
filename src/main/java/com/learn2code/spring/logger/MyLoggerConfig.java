@@ -2,17 +2,22 @@ package com.learn2code.spring.logger;
 
 import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
 import org.apache.commons.logging.Log;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.Console;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+@Component
 public class MyLoggerConfig {
-
+    @Value("${foo.rootloggerlevel}")
     private String rootLoggerLevel;
+    @Value("${foo.printedLoggerLevel}")
     private String printedLoggerLevel;
 
     public void setRootLoggerLevel(String rootLoggerLevel) {
@@ -23,6 +28,7 @@ public class MyLoggerConfig {
         this.printedLoggerLevel = printedLoggerLevel;
     }
 
+    @PostConstruct
     public void initLogger(){
         // parse level
 

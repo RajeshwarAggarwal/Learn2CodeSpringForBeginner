@@ -9,26 +9,13 @@
 
     <!-- property placeholder-->
     <context:property-placeholder location="sport.properties"/>
-
-    <!-- Define your beans here -->
-    <bean id="myLoggerConfig" class="com.learn2code.spring.logger.MyLoggerConfig" init-method="initLogger">
-        <property name="rootLoggerLevel" value="FINE" />
-        <property name="printedLoggerLevel" value="FINE"/>
-    </bean>
-
-    <bean id="myFortuneService" class="com.learn2code.spring.RandomFortuneService">
-
-    </bean>
-    <bean id="myCoach" class="com.learn2code.spring.BaseBallCoach">
-        <constructor-arg ref="myFortuneService"/>
-    </bean>
-
-    <bean id="myCricketCoach" class="com.learn2code.spring.CricketCoach">
-        <property name="email" value="${foo.email}"/>
-        <property name="team" value="${foo.team}"/>
-        <property name="fortuneService" ref="myFortuneService"/>
-    </bean>
     
+    <!-- add an entry to enable component scan -->
+    <context:component-scan base-package="com.learn2code.spring.logger" />
+
+    <!-- add an entry to enable component scan -->
+    <context:component-scan base-package="com.learn2code.spring" />
+
 </beans>
 
 

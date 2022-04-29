@@ -2,18 +2,20 @@ package com.learn2code.spring;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class BeanLifeCycleDemoApp {
+public class PingPongCoachDemoApp {
 
     public static void main (String [] arg){
+
         // create application context
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         //get a spring bean
-        Coach theCoach = context.getBean("trackCoach",Coach.class);
-        Coach thetennisCoach = context.getBean("tennisCoach",Coach.class);
+        Coach theCoach = context.getBean("pingPongCoach",Coach.class);
 
-        //use the bean
-        System.out.println(theCoach.getDailyWorkOut());
+        // call bean methods
+        System.out.println("PingPonCoachDemoApp: "+theCoach.getDailyWorkOut());
+
+        System.out.println("PingPonCoachDemoApp: "+theCoach.getDailyFortune());
 
         context.close();
     }

@@ -1,10 +1,16 @@
 package com.learn2code.spring;
 
-public class    BaseBallCoach implements Coach{
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+public class BaseBallCoach implements Coach{
 
     private FortuneService fortuneService;
 
-    public BaseBallCoach(FortuneService fortuneService){
+    @Autowired
+    public BaseBallCoach(@Qualifier("happyFortuneService") FortuneService fortuneService){
         System.out.println("BasketBallCoach : Constructor is called.");
         this.fortuneService=fortuneService;
     }
@@ -19,7 +25,7 @@ public class    BaseBallCoach implements Coach{
         return fortuneService.getFortune();
     }
 
-    // Init method
+    /*// Init method
     public void doMyStuffAtStartUp(){
         System.out.println("BaseBallCoach : Inside init method and doing some startup work");
     }
@@ -27,5 +33,5 @@ public class    BaseBallCoach implements Coach{
     // Destroy method
     public void doMyStuffAtCleanUp(){
         System.out.println("BaseBallCoach : Inside destroy method and doing some cleanup work");
-    }
+    }*/
 }

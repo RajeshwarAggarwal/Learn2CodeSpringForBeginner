@@ -1,7 +1,10 @@
 package com.learn2code.spring;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
+@Component
 public class RandomFortuneService implements FortuneService{
 
     private String [] data ={
