@@ -3,6 +3,9 @@ package com.learn2code.spring.logger;
 import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -13,11 +16,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
-@Component
+@Configuration
+@PropertySource("myLogger.properties")
 public class MyLoggerConfig {
-    @Value("${foo.rootloggerlevel}")
+
+    @Value("${root.rootloggerlevel}")
     private String rootLoggerLevel;
-    @Value("${foo.printedLoggerLevel}")
+    @Value("${root.printedLoggerLevel}")
     private String printedLoggerLevel;
 
     public void setRootLoggerLevel(String rootLoggerLevel) {
@@ -36,7 +41,7 @@ public class MyLoggerConfig {
         Level printedLevel = Level.parse(printedLoggerLevel);
 
         // get logger for application context
-        Logger applicationContextLogger = Logger.getLogger(ClassPathXmlApplicationContext.class.getName());
+        Logger applicationContextLogger = Logger.getLogger(AnnotationConfigApplicationContext.class.getName());
 
         // get Parent Logger
         Logger loggerParent = applicationContextLogger.getParent();
