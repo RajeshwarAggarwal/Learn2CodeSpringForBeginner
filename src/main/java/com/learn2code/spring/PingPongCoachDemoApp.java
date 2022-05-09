@@ -2,7 +2,6 @@ package com.learn2code.spring;
 
 import com.learn2code.spring.logger.MyLoggerConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class PingPongCoachDemoApp {
 

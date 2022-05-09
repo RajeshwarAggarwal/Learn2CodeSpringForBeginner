@@ -2,8 +2,6 @@ package com.learn2code.spring;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.sql.SQLOutput;
-
 public class BeanScopeDemoApp {
 
     public static void main (String [] arg){
