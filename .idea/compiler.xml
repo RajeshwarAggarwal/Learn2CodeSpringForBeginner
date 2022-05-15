@@ -7,7 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Learn2CodeSpringForBeginner" />
-        <module name="HibernateWithSpring" />
+        <module name="HibernateAdvancedMapping" />
       </profile>
     </annotationProcessing>
   </component>
